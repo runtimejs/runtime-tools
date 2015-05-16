@@ -5,3 +5,4 @@ npm-debug.log
 runtimejs-kernels
 runtime.log
 netdump.pcap
+netdump.log
