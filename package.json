@@ -1,0 +1,33 @@
+{
+  "name": "runtime-tools",
+  "version": "0.1.0",
+  "description": "runtime.js tools",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo 'no tests :('"
+  },
+  "bin": {
+    "runtime-qemu": "bin/runtime-qemu.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:runtimejs/runtime-tools.git"
+  },
+  "author": "runtime.js project authors",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/runtimejs/runtime-tools/issues"
+  },
+  "homepage": "http://runtimejs.org",
+  "runtimejsKernelVersion": "0.1.4",
+  "devDependencies": {
+    "tape": "^4.0.0"
+  },
+  "dependencies": {
+    "chalk": "^1.0.0",
+    "minimist": "^1.1.1",
+    "nugget": "^1.5.1",
+    "request": "^2.55.0",
+    "shelljs": "^0.4.0"
+  }
+}

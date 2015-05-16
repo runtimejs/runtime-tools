@@ -1,0 +1,7 @@
+*.swo
+*.swp
+/node_modules
+npm-debug.log
+runtimejs-kernels
+runtime.log
+netdump.pcap
