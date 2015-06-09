@@ -51,6 +51,7 @@ var qemuNetdump = !!argv.netdump;
 var qemuCurses = !!argv.curses;
 var qemuKVM = !!argv.kvm;
 var qemuAppend = typeof argv.append === 'string' ? argv.append : '';
+var qemuNographic = !!argv.nographic;
 
 var dryRun = !!argv['dry-run'];
 var verbose = !!argv.verbose;
@@ -71,6 +72,7 @@ getRuntime(kernelFile, function(err, runtimeFile) {
     kvm: qemuKVM,
     append: qemuAppend,
     dryRun: dryRun,
-    verbose: verbose
+    verbose: verbose,
+    nographic: qemuNographic
   });
 });

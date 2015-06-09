@@ -59,6 +59,11 @@ function getQemuArgs(opts) {
     }
   }
 
+  if (opts.nographic) {
+    a.push('-nographic');
+    a.push('-monitor none');
+  }
+
   if (opts.netdump) {
     a.push('-net dump,file=' + logs.netdumpPath);
   }
