@@ -47,6 +47,9 @@ if (typeof argv.net === 'string') {
   qemuNet = argv.net;
 }
 
+var defaultKernelVersion = require('../package.json').runtimejsKernelVersion;
+var kernelVer = argv.kernelver || defaultKernelVersion;
+
 var qemuNetdump = !!argv.netdump;
 var qemuCurses = !!argv.curses;
 var qemuKVM = !!argv.kvm;
@@ -56,7 +59,7 @@ var qemuNographic = !!argv.nographic;
 var dryRun = !!argv['dry-run'];
 var verbose = !!argv.verbose;
 
-getRuntime(kernelFile, function(err, runtimeFile) {
+getRuntime(kernelVer, kernelFile, function(err, runtimeFile) {
   if (err) {
     throw err;
   }

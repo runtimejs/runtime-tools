@@ -1,9 +1,8 @@
 var getPrebuilt = require('./get-prebuilt');
-var defaultKernelVersion = require('./package.json').runtimejsKernelVersion;
 
-module.exports = function(kernelFile, cb) {
+module.exports = function(kernelVer, kernelFile, cb) {
   if (!kernelFile) {
-    return getPrebuilt(defaultKernelVersion, cb);
+    return getPrebuilt(kernelVer, cb);
   } else {
     return cb(null, kernelFile);
   }
