@@ -68,6 +68,10 @@ function getQemuArgs(opts) {
     a.push('-net dump,file=' + logs.netdumpPath);
   }
 
+  if (opts.virtioRng) {
+    a.push('-device virtio-rng-pci');
+  }
+
   if (opts.kvm) {
     a.push('-enable-kvm');
     a.push('-no-kvm-irqchip');
