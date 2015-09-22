@@ -8,10 +8,12 @@ var logs = require('./logs');
 
 var qemu = 'qemu-system-x86_64';
 
-function testQemu() {
+function testQemu(dryRun) {
   if (!shell.which(qemu)) {
     shell.echo(chalk.red('error: qemu is not installed (qemu-system-x86_64)'));
-    return shell.exit(1);
+    if (!dryRun) {
+      return shell.exit(1);
+    }
   }
 }
 
@@ -96,7 +98,7 @@ function getQemuArgs(opts) {
 }
 
 module.exports = function(opts) {
-  testQemu();
+  testQemu(opts.dryRun);
 
   var qemuArgs = getQemuArgs(opts);
   var line = qemu + ' ' + qemuArgs.join(' ');
