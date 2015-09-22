@@ -63,6 +63,9 @@ if (!command) {
   return shell.exit(1);
 }
 
+// fix for QEMU stdout on Windows
+process.env.SDL_STDIO_REDIRECT = 'no';
+
 var kernelFile = String(argv.kernel || '');
 var initrdFile = String(argv._[0] || '');
 
