@@ -33,7 +33,7 @@ if (printNetdump) {
 
 var command = argv._[0];
 if (!command) {
-  shell.echo('usage: runtime-qemu [--net[=<type>]] [--netdump] [--kvm] [--curses]');
+  shell.echo('usage: runtime-qemu [--net[=<type>]] [--netdump] [--kvm] [--curses] [--port=<portnum>]...');
   shell.echo('                    [--append=<value>] [--dry-run] [--verbose] [--virtio-rng]');
   shell.echo('                    [--kernel=<kernel>] [--kernelver=<ver>] <initrd>');
   return shell.exit(1);
@@ -45,6 +45,14 @@ var initrdFile = String(argv._[0] || '');
 var qemuNet = 'user';
 if (typeof argv.net === 'string') {
   qemuNet = argv.net;
+}
+
+var extraPorts = [];
+if (typeof argv.port === 'number') {
+  extraPorts = [argv.port];
+}
+if (argv.port instanceof Array) {
+  extraPorts = argv.port;
 }
 
 var defaultKernelVersion = require('../package.json').runtimejsKernelVersion;
@@ -78,6 +86,7 @@ getRuntime(kernelVer, kernelFile, function(err, runtimeFile) {
     dryRun: dryRun,
     verbose: verbose,
     virtioRng: qemuVirtioRng,
-    nographic: qemuNographic
+    nographic: qemuNographic,
+    ports: extraPorts
   });
 });
