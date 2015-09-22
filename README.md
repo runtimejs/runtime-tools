@@ -2,6 +2,8 @@
 
 runtime.js tools
 
+[![Build Status](https://travis-ci.org/runtimejs/runtime-tools.svg)](https://travis-ci.org/runtimejs/runtime-tools)
+
 ## USAGE
 
 ```
