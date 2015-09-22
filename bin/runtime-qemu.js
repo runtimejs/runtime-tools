@@ -35,9 +35,30 @@ if (printNetdump) {
 
 var command = argv._[0];
 if (!command) {
-  shell.echo('usage: runtime-qemu [--net[=<type>]] [--netdump] [--kvm] [--curses] [--port=<portnum>]...');
-  shell.echo('                    [--append=<value>] [--dry-run] [--verbose] [--virtio-rng]');
-  shell.echo('                    [--kernel=<kernel>] [--kernelver=<ver>] <initrd>');
+  shell.echo('runtime-qemu [--net[=<type>]] [--netdump] [--kvm] [--curses] [--port=<portnum>]...');
+  shell.echo('             [--append=<value>] [--dry-run] [--verbose] [--virtio-rng] [--nographic]');
+  shell.echo('             [--kernel=<kernel>] [--kernelver=<ver>] <initrd>');
+  shell.echo('runtime-qemu --print-log');
+  shell.echo('runtime-qemu --print-netdump');
+  shell.echo('');
+  shell.echo('  --net[=<type>=user]   Enable network (type can be "user", "tap" or "bridge", defaults to user)');
+  shell.echo('  --netdump             Save network activity to the file');
+  shell.echo('  --kvm                 Enable Linux KVM (much faster virtualization)');
+  shell.echo('  --curses              Text-mode graphics');
+  shell.echo('  --port=<portnum>      Redirect TCP/UDP connections on the host port to the runtime.js');
+  shell.echo('                        (port 9000 redirected by default automatically)');
+  shell.echo('  --append=<value>      Append string to runtime.js command line');
+  shell.echo('  --dry-run             Test input but do not launch QEMU');
+  shell.echo('  --verbose             Output extra info like QEMU command line');
+  shell.echo('  --virtio-rng          Enable VIRTIO-RNG entropy source for the runtime.js');
+  shell.echo('  --nographic           Disable graphics');
+  shell.echo('  --kernel=<kernel>     Specify local kernel file to use');
+  shell.echo('  --kernelver=<ver>     Specify kernel version to download (defaults to latest)');
+  shell.echo('');
+  shell.echo('  --print-log           Show log file written in curses mode (using less)');
+  shell.echo('  --print-netdump       Show network log written in netdump mode (using less)');
+  shell.echo('');
+  shell.echo('  <initrd>              Source code bundle');
   return shell.exit(1);
 }
 
