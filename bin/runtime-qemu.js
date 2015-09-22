@@ -41,7 +41,8 @@ if (!command) {
   shell.echo('runtime-qemu --print-log');
   shell.echo('runtime-qemu --print-netdump');
   shell.echo('');
-  shell.echo('  --net[=<type>=user]   Enable network (type can be "user", "tap" or "bridge", defaults to user)');
+  shell.echo('  --net[=<type>=user]   Enable network (type can be "user", "tap" or "bridge",');
+  shell.echo('                        defaults to user)');
   shell.echo('  --netdump             Save network activity to the file');
   shell.echo('  --kvm                 Enable Linux KVM (much faster virtualization)');
   shell.echo('  --curses              Text-mode graphics');
