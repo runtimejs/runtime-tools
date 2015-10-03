@@ -3,20 +3,7 @@ var shell = require('shelljs');
 var path = require('path');
 
 module.exports = function(kernelVersion, cb) {
-  var globalModulePath = shell.exec('npm config get prefix', {
-    silent: true
-  }).output;
-  // remove newline:
-  if (globalModulePath.substr(globalModulePath.length-1) === '\n') globalModulePath = globalModulePath.substr(0, globalModulePath.length-1);
-  // if it's installed as global:
-  if (__dirname.substr(0, globalModulePath.length) === globalModulePath) {
-    // if it's not run as root
-    if (process.geteuid() !== 0) {
-      return cb(new Error('must be run as root in order to download the kernel globally.'));
-    }
-  }
-
-  var kernelsDir = path.resolve(__dirname, 'runtimejs-kernels');
+  var kernelsDir = path.resolve(process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'], '.runtime');
   if (!shell.test('-d', kernelsDir)) {
     shell.mkdir(kernelsDir);
   }
