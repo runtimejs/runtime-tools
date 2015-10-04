@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 var argv = require('minimist')(process.argv.slice(2), {
-  boolean: ['kvm', 'verbose', 'nographic', 'dry-run', 'netdump', 'curses', 'virtio-rng']
+  boolean: ['kvm', 'verbose', 'nographic', 'dry-run', 'netdump', 'curses', 'virtio-rng', 'local']
 });
 var shell = require('shelljs');
 var qemu = require('../qemu');
@@ -54,6 +54,7 @@ if (!command) {
   shell.echo('  --virtio-rng          Enable VIRTIO-RNG entropy source for the runtime.js');
   shell.echo('  --nographic           Disable graphics');
   shell.echo('  --kernel=<kernel>     Specify local kernel file to use');
+  shell.echo('  --local               Download the kernel locally (i.e. in the module\'s directory)');
   shell.echo('  --kernelver=<ver>     Specify kernel version to download (defaults to latest)');
   shell.echo('');
   shell.echo('  --print-log           Show log file written in curses mode (using less)');
@@ -95,7 +96,7 @@ var qemuVirtioRng = !!argv['virtio-rng'];
 var dryRun = !!argv['dry-run'];
 var verbose = !!argv.verbose;
 
-getRuntime(kernelVer, kernelFile, function(err, runtimeFile) {
+getRuntime(kernelVer, kernelFile, !!argv.local, function(err, runtimeFile) {
   if (err) {
     throw err;
   }

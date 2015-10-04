@@ -2,8 +2,9 @@ var nugget = require('nugget');
 var shell = require('shelljs');
 var path = require('path');
 
-module.exports = function(kernelVersion, cb) {
-  var kernelsDir = path.resolve(__dirname, 'runtimejs-kernels');
+module.exports = function(kernelVersion, shouldBeLocal, cb) {
+  var basePath = shouldBeLocal ? __dirname : process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'];
+  var kernelsDir = path.resolve(basePath, '.runtime');
   if (!shell.test('-d', kernelsDir)) {
     shell.mkdir(kernelsDir);
   }
