@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 var argv = require('minimist')(process.argv.slice(2), {
-  boolean: ['kvm', 'verbose', 'nographic', 'dry-run', 'netdump', 'curses', 'virtio-rng']
+  boolean: ['kvm', 'verbose', 'nographic', 'dry-run', 'netdump', 'curses', 'virtio-rng', 'local']
 });
 var shell = require('shelljs');
 var qemu = require('../qemu');
